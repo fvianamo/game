@@ -10,6 +10,41 @@ def test_instancia_game():
 
 def test_inicializa_game():
 	game = Game()
+	assert game.cenario == []
 	game.inicializar()
 	assert game.cenario != []
 	assert len(game.cenario) == 3
+
+
+def test_checar_hipotese():
+	game = Game()
+	game.inicializar()
+	assert game.checar_hipotese('1,1,1') in [0, 1, 2, 3]
+
+
+def test_ganhar_jogo():
+	game = Game()
+	game.inicializar()
+	game.cenario = [0, 0, 0]
+	assert game.checar_hipotese('0,0,0') == 0
+
+
+def test_errar_suspeito():
+	game = Game()
+	game.inicializar()
+	game.cenario = [0, 0, 0]
+	assert game.checar_hipotese('1,0,0') == 1
+
+
+def test_errar_local():
+	game = Game()
+	game.inicializar()
+	game.cenario = [0, 0, 0]
+	assert game.checar_hipotese('0,1,0') == 2
+
+
+def test_errar_arma():
+	game = Game()
+	game.inicializar()
+	game.cenario = [0, 0, 0]
+	assert game.checar_hipotese('0,0,1') == 3
