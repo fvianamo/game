@@ -48,3 +48,30 @@ def test_errar_arma():
 	game.inicializar()
 	game.cenario = [0, 0, 0]
 	assert game.checar_hipotese('0,0,1') == 3
+
+
+def test_errar_arma_e_suspeito():
+	game = Game()
+	game.inicializar()
+	game.cenario = [0, 0, 0]
+	assert game.checar_hipotese('1,0,1') in [1,3]
+
+
+def test_errar_local_e_suspeito():
+	game = Game()
+	game.inicializar()
+	game.cenario = [0, 0, 0]
+	assert game.checar_hipotese('1,1,0') in [1,2]
+
+
+def test_errar_arma_e_local():
+	game = Game()
+	game.inicializar()
+	game.cenario = [0, 0, 0]
+	assert game.checar_hipotese('0,1,1') in [2,3]
+
+
+def test_descobrir_crime():
+	game = Game()
+	game.inicializar()
+	assert game.resolve_jogo() == 0
